@@ -15,7 +15,7 @@ rm -rf ~/.config/ibus/
 " > clean
 
 echo "#!/bin/bash
-if [[ $(tty) =~ /dev/tty* ]]; then
+if [[ \$(tty) =~ /dev/tty* ]]; then
     clean && startxfce4
 fi
 " > xfce
@@ -23,4 +23,12 @@ fi
 chmod +111 clean xfce
 mkdir -p $HOME/.local/bin/
 mv clean xfce $HOME/.local/bin/
+
+# IBUS autostart
+mkdir -p $HOME/.config/autostart/
+echo "[Desktop Entry]
+Type=Application
+Name=IBUS Input Method
+Exec=ibus-daemon
+" > $HOME/.config/autostart/IBUS.desktop
 
